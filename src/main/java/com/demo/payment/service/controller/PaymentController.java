@@ -1,5 +1,7 @@
 package com.demo.payment.service.controller;
 
+import org.springframework.http.MediaType;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,8 +20,8 @@ public class PaymentController {
         return "Get Payment";
     }
 
-    @PostMapping("/test/payments")
-    public String createPayment(@RequestBody Map<Object,Object> attributes){
+    @PostMapping(value = "/test/payments", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,produces = MediaType.TEXT_HTML_VALUE)
+    public String createPayment(@RequestBody MultiValueMap<Object,Object> attributes){
         System.out.println("Create Payment Method "+attributes);
         System.err.println("Create Payment Method " + attributes);
         String response = "<html><body><h1>Payment Success</h1></body</html>";
