@@ -22,8 +22,9 @@ public class PaymentController {
 
     @PostMapping(value = "/test/payments", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,produces = MediaType.TEXT_HTML_VALUE)
     public String createPayment(@RequestBody MultiValueMap<Object,Object> attributes){
-        System.out.println("Create Payment Method "+attributes);
+		System.out.println("***********************************Create Payment******************************************************************************");
         System.err.println("Create Payment Method " + attributes);
+		System.out.println("***********************************Create Payment******************************************************************************");
         String response = "<html><body><h1>Payment Success</h1></body</html>";
         return response;
     }
@@ -37,8 +38,9 @@ public class PaymentController {
 
     @PostMapping(value = "/test/payments/receipt", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,produces = MediaType.TEXT_HTML_VALUE)
     public String createPaymentReceipt(@RequestBody MultiValueMap<Object,Object> attributes){
-        System.out.println("Create Payment Receipt Method "+attributes);
+        System.out.println("=====================================Create Payment Receipt============================================================");
         System.err.println("Create Payment Receipt Method " + attributes);
+		System.out.println("=====================================Create Payment Receipt============================================================");
         String response = "<html><body><h1>Payment Receipt Success</h1></body</html>";
         return response;
     }
@@ -52,8 +54,9 @@ public class PaymentController {
 
     @PostMapping(value = "/test/payments/Silent", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,produces = MediaType.TEXT_HTML_VALUE)
     public String createPaymentSilent(@RequestBody MultiValueMap<Object,Object> attributes){
-        System.out.println("Silent Payment Receipt Method "+attributes);
+        System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$%$$$Silent Payment$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
         System.err.println("Silent Payment Receipt Method " + attributes);
+		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$%$$$Silent Payment$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
         String response = "<html><body><h1>Silent Invoked</h1></body</html>";
         return response;
     }
