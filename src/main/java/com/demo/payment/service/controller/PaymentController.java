@@ -27,4 +27,34 @@ public class PaymentController {
         String response = "<html><body><h1>Payment Success</h1></body</html>";
         return response;
     }
+	
+	@GetMapping("/test/payments/receipt")
+    public String receipt(){
+        System.out.println("Receipt Get Method Invoked");
+        System.err.println("Receipt Get Method Invoked");
+        return "Get Payment Receipt";
+    }
+
+    @PostMapping(value = "/test/payments/receipt", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,produces = MediaType.TEXT_HTML_VALUE)
+    public String createPaymentReceipt(@RequestBody MultiValueMap<Object,Object> attributes){
+        System.out.println("Create Payment Receipt Method "+attributes);
+        System.err.println("Create Payment Receipt Method " + attributes);
+        String response = "<html><body><h1>Payment Receipt Success</h1></body</html>";
+        return response;
+    }
+	
+	@GetMapping("/test/payments/silent")
+    public String silent(){
+        System.out.println("Silent Get Method Invoked");
+        System.err.println("Silent Get Method Invoked");
+        return "Get Payment Silent";
+    }
+
+    @PostMapping(value = "/test/payments/Silent", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,produces = MediaType.TEXT_HTML_VALUE)
+    public String createPaymentSilent(@RequestBody MultiValueMap<Object,Object> attributes){
+        System.out.println("Silent Payment Receipt Method "+attributes);
+        System.err.println("Silent Payment Receipt Method " + attributes);
+        String response = "<html><body><h1>Silent Invoked</h1></body</html>";
+        return response;
+    }
 }
