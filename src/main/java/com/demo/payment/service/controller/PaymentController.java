@@ -5,7 +5,9 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpHeaders;
+
 
 import java.util.Map;
 import java.util.Set;
@@ -21,8 +23,9 @@ public class PaymentController {
     }
 
     @PostMapping(value = "/test/payments", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,produces = MediaType.TEXT_HTML_VALUE)
-    public String createPayment(@RequestBody MultiValueMap<Object,Object> attributes){
+    public String createPayment(@RequestBody MultiValueMap<Object,Object> attributes, @RequestHeader HttpHeaders httpHeaders){
 		System.out.println("***********************************Create Payment******************************************************************************");
+        System.err.println("Payment Headers " + httpHeaders);
         System.err.println("Create Payment Method " + attributes);
 		System.out.println("***********************************Create Payment******************************************************************************");
         String response = "<html><body><h1>Payment Success</h1></body</html>";
@@ -37,8 +40,9 @@ public class PaymentController {
     }
 
     @PostMapping(value = "/test/payments/receipt", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,produces = MediaType.TEXT_HTML_VALUE)
-    public String createPaymentReceipt(@RequestBody MultiValueMap<Object,Object> attributes){
+    public String createPaymentReceipt(@RequestBody MultiValueMap<Object,Object> attributes, @RequestHeader HttpHeaders httpHeaders){
         System.out.println("=====================================Create Payment Receipt============================================================");
+        System.err.println("Payment Headers " + httpHeaders);
         System.err.println("Create Payment Receipt Method " + attributes);
 		System.out.println("=====================================Create Payment Receipt============================================================");
         String response = "<html><body><h1>Payment Receipt Success</h1></body</html>";
@@ -52,12 +56,23 @@ public class PaymentController {
         return "Get Payment Silent";
     }
 
-    @PostMapping(value = "/test/payments/Silent", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,produces = MediaType.TEXT_HTML_VALUE)
-    public String createPaymentSilent(@RequestBody MultiValueMap<Object,Object> attributes){
+    @PostMapping(value = "/test/payments/silent", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,produces = MediaType.TEXT_HTML_VALUE)
+    public String createPaymentSilent(@RequestBody MultiValueMap<Object,Object> attributes, @RequestHeader HttpHeaders httpHeaders){
         System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$%$$$Silent Payment$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+		System.err.println("Payment Headers " + httpHeaders);
         System.err.println("Silent Payment Receipt Method " + attributes);
 		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$%$$$Silent Payment$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
         String response = "<html><body><h1>Silent Invoked</h1></body</html>";
+        return response;
+    }
+	
+	@PostMapping(value = "/test/payments/retry", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,produces = MediaType.TEXT_HTML_VALUE)
+    public String createPaymentRetry(@RequestBody MultiValueMap<Object,Object> attributes, @RequestHeader HttpHeaders httpHeaders){
+        System.out.println("########################################Retry Payment############################################");
+		System.err.println("Payment Headers " + httpHeaders);
+        System.err.println("Silent Payment Receipt Method " + attributes);
+		System.out.println("########################################Retry Payment############################################");
+        String response = "<html><body><h1>REtry Invoked</h1></body</html>";
         return response;
     }
 }
