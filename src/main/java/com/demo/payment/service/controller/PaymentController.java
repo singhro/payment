@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpHeaders;
 
+import com.demo.payment.service.controller.PaymentResponse;
+
 
 import java.util.Map;
 import java.util.Set;
@@ -23,7 +25,7 @@ public class PaymentController {
     }
 
     @PostMapping(value = "/test/payments", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,produces = MediaType.TEXT_HTML_VALUE)
-    public String createPayment(@RequestBody String attributes, @RequestHeader HttpHeaders httpHeaders){
+    public String createPayment(@RequestBody PaymentResponse attributes, @RequestHeader HttpHeaders httpHeaders){
 		System.out.println("***********************************Create Payment******************************************************************************");
         System.err.println("Payment Headers " + httpHeaders);
         System.err.println("Create Payment Method " + attributes);
